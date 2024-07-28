@@ -1,5 +1,3 @@
-delfina = "Soy Delfina"
+saludo x = "Hola! soy " ++ x
 
-mariana = "Soy Mariana"
-
-saludo = "Hola! soy "
+boomBang xs =[ if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x] 
