@@ -1,0 +1,4 @@
+De la guia 3:
+En el ejercicio 2)i si uso Floar no me deja usar ni div ni mod 
+pero si uso Integer si. ¿Cómo funciona?, ¿Hay otra forma de 
+hacer el ejercicio?
