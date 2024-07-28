@@ -1,2 +1,25 @@
-En la terminal::
+En la terminal:: Pruebas de las primeras cosas. Apuntes de Listas
 
+PS C:\Delfina\haskell\aparte> ghci
+Loaded package environment from C:\Users\eugeb\AppData\Roaming\ghc\x86_64-mingw32-9.8.1\environments\default
+GHCi, version 9.8.1: https://www.haskell.org/ghc/  :? for help
+ghci> [1..5]
+[1,2,3,4,5]
+ghci> [2,4..10]
+[2,4,6,8,10]
+ghci> take 24 [6,12..]  
+[6,12,18,24,30,36,42,48,54,60,66,72,78,84,90,96,102,108,114,120,126,132,138,144]
+ghci> take 4 (cycle [1,2,77])
+[1,2,77,1]
+ghci> take 8 (cycle [1,2,77]) 
+[1,2,77,1,2,77,1,2]
+ghci> take 40 (cycle "delfina")
+"delfinadelfinadelfinadelfinadelfinadelfi"
+ghci> take 40 (cycle "delfina ")
+"delfina delfina delfina delfina delfina "
+ghci> take 40 (repeat 5)        
+[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]
+ghci> replicate 3 10
+[10,10,10]
+ghci> saludo "Juan"
+"Hola! soy Juan"
