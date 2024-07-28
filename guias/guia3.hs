@@ -70,6 +70,7 @@ esMultiploDe x y
     | otherwise = False
 -- i)
 digitoUnidades :: Integer -> Integer
-digitoUnidades x = x `mod` 10 
+digitoUnidades x = x `mod` 10
 -- j)
-digitoDecenas
+digitoDecenas :: Integer -> Integer
+digitoDecenas x = (x `div` 10) `mod` 10
