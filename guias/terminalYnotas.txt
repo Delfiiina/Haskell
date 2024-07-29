@@ -1,4 +1,10 @@
 De la guia 3:
-En el ejercicio 2)i si uso Floar no me deja usar ni div ni mod 
+En el ejercicio 2i si uso Floar no me deja usar ni div ni mod 
 pero si uso Integer si. ¿Cómo funciona?, ¿Hay otra forma de 
 hacer el ejercicio?
+Creo que en Integer también entran los Z
+
+ Dudas con el ejercicio 3
+ Ejercicio 4c = cómo hago la raiz cuadrada?
+ Ejercicio 4g = ¿Cómo hago que funcione para
+elementos de cualquier tipo?

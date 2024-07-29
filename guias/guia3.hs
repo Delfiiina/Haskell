@@ -74,3 +74,60 @@ digitoUnidades x = x `mod` 10
 -- j)
 digitoDecenas :: Integer -> Integer
 digitoDecenas x = (x `div` 10) `mod` 10
+-- Ejercicio 4) a)
+prodInt :: (Integer,Integer) -> (Integer,Integer) -> Integer
+prodInt (a1,a2) (b1,b2) = a1*b1 + a2*b2
+-- b)
+todoMenor :: (Integer,Integer) -> (Integer,Integer) -> Bool
+todoMenor (a1,a2) (b1,b2) 
+    | a1 < b1 && a2 < b2 = True
+    | otherwise = False
+-- d)
+sumaTerna :: (Integer,Integer,Integer) -> Integer
+sumaTerna (a,b,c) = a+b+c
+-- e)
+sumarSoloMultiplos :: (Integer,Integer,Integer) -> Integer -> Integer
+sumarSoloMultiplos (a,b,c) x 
+    | a `mod` x /= 0 && b `mod` x /= 0 && c `mod` x /= 0 = 0
+    | a `mod` x == 0 && b `mod` x == 0 && c `mod` x == 0 = a + b + c
+    | a `mod` x /= 0 && b `mod` x == 0 && c `mod` x == 0 = b + c
+    | a `mod` x == 0 && b `mod` x /= 0 && c `mod` x == 0 = a + c
+    | a `mod` x == 0 && b `mod` x == 0 && c `mod` x /= 0 = a + b 
+    | a `mod` x /= 0 && b `mod` x /= 0 && c `mod` x == 0 =  c
+    | a `mod` x == 0 && b `mod` x /= 0 && c `mod` x /= 0 =  a
+    | a `mod` x == 0 && b `mod` x == 0 && c `mod` x /= 0 =  b
+-- f)
+posPrimerPar :: (Integer,Integer,Integer) -> Integer
+posPrimerPar (a,b,c)
+    | a `mod` 2 == 0 = 1
+    | b `mod` 2 == 0 = 2
+    | c `mod` 2 == 0 = 3
+    | otherwise = 4
+-- g)
+crearPar :: x -> y -> (x,y)
+crearPar x y = (x,y)
+-- h)
+invertir :: (a,b) -> (b,a)
+invertir (a,b) = (b,a)
+-- Ejercicio 5
+f2 :: Integer -> Integer
+f2 n 
+    | n <= 7 = n*n
+    | otherwise = 2*n - 1
+g2 :: Integer -> Integer
+g2 n
+    | n `mod` 2 == 0 = n `div`2
+    | otherwise = 3*n + 1
+todosMenores :: (Integer,Integer,Integer) -> Bool
+todosMenores (a,b,c)
+    |f2 a > g2 a && f2 b > g2 b && f2 c > g2 c = True
+    | otherwise = False
+-- Ejercicio 6 
+bisiesto :: Integer -> Bool
+bisiesto x
+    | x `mod` 4 /= 0 || (x `mod` 100 == 0 && x `mod` 400 /= 0) = False
+    | otherwise = True
+-- Ejercicio 7 
+distanciaManhattan :: (Float,Float,Float) -> (Float,Float,Float) -> Float
+distanciaManhattan (p0,p1,p2) (q0,q1,q2)
+    | 
