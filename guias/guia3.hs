@@ -129,5 +129,19 @@ bisiesto x
     | otherwise = True
 -- Ejercicio 7 
 distanciaManhattan :: (Float,Float,Float) -> (Float,Float,Float) -> Float
-distanciaManhattan (p0,p1,p2) (q0,q1,q2)
-    | 
+distanciaManhattan (p0,p1,p2) (q0,q1,q2) = absolutoabs (p0-q0) + absolutoabs (p1-q1) + absolutoabs (p2-q2)
+-- Creo la misma función de absoluto de antes pero ahora con Float así la puedo utilizar en esta función
+absolutoabs :: Float -> Float
+absolutoabs a
+    | a == 0 = 0
+    | a > 0 = a 
+    | a < 0 = -a
+-- Ejercicio 8
+sumaUltimosDigitos :: Integer -> Integer
+sumaUltimosDigitos x = (absoluto x) `mod` 10 + ((absoluto x `div` 10) `mod` 10)
+comparar :: Integer -> Integer -> Integer
+comparar a b 
+    | sumaUltimosDigitos a < sumaUltimosDigitos b = 1
+    | sumaUltimosDigitos a > sumaUltimosDigitos b = -1
+    | sumaUltimosDigitos a == sumaUltimosDigitos b = 0
+    
