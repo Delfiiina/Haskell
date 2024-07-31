@@ -20,3 +20,18 @@ Ejercicio 6: Implementación de ciclos
 Escribe una función cycleN que tome un número n y una lista, y devuelva una nueva lista con la lista original repetida n veces.
 cycleN :: Int -> [a] -> [a]
 --}
+
+-- Ejercicio 1
+removeDuplicates :: [Integer] -> [Integer] 
+removeDuplicates [] = []
+removeDuplicates (x:xs)
+    | x `elem` xs = removeDuplicates xs
+    | otherwise = x : removeDuplicates xs
+-- Ejercicio 2
+maxInList :: [Integer] -> Integer
+maxInList [x] = x
+maxInList (x:xs)
+    | x > head xs = maxInList (x:tail xs)
+    | otherwise = maxInList xs 
+-- Ejercicio 3
+isPrime :: Integer -> Bool
