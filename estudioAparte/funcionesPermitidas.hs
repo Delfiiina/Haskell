@@ -10,9 +10,11 @@ max2 :: Float -> Float -> Float
 max2 x y
     | x > y = x
     | x <= y = y
+-- Listas
 indice :: Integer -> [Float] -> Float
 indice 0 (x:xs) = x
 indice n (x:xs) = indice (n-1) xs
+-- Funciones básicas para listas
 last2 :: [Float]  -> Float
 last2 [x] = x
 last2 (x:xs) = last2 xs 
@@ -31,5 +33,12 @@ reverse2 [x] = [x]
 reverse2 (x:xs) = reverse2 xs ++ [x]
 take2 :: Integer -> [Float] -> [Float]
 take2 0 (_:_) = []
+take2 n [x] = [x]
 take2 n (x:xs) = x : take2 (n-1) xs
 drop2 :: Integer -> [Float] -> [Float]
+drop2 0 (x:xs) = (x:xs)
+drop2 n [] = []
+drop2 n [x] = []
+drop2 n (x:xs) = drop2 (n-1) (tail (x:xs))
+maximum2 :: [Float] -> Float
+maximum2
