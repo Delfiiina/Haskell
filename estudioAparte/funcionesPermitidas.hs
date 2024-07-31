@@ -41,4 +41,28 @@ drop2 n [] = []
 drop2 n [x] = []
 drop2 n (x:xs) = drop2 (n-1) (tail (x:xs))
 maximum2 :: [Float] -> Float
-maximum2
+maximum2 [x] = x 
+maximum2 (x:xs)
+    | x >= head xs = maximum2 (x:tail xs) 
+    | x < head xs = maximum2 xs 
+minimum2 :: [Float] -> Float
+minimum2 [x] = x
+minimum2 (x:xs)
+    | x <= head xs = minimum2 (x:tail xs)
+    | x > head xs = minimum2 xs
+sum2 :: [Float] -> Float
+sum2 [] = 0
+sum2 [x] = x
+sum2 (x:xs) = x + sum2 xs
+product2 :: [Float] -> Float
+product2 [] = 0
+product2 [x] = x
+product2 (x:xs) = x * product2 xs 
+elem2 :: Float -> [Float] -> Bool
+elem2 _ [] = False
+elem2 n [x] 
+    | n == x = True
+    | otherwise = False
+elem2 n (x:xs) 
+    | n == x = True
+    | otherwise = elem2 n xs
