@@ -19,6 +19,17 @@ last2 (x:xs) = last2 xs
 init2 :: [Float] -> [Float]
 init2 [x] = []
 init2 (x:xs) = x: init2 xs
-lenght2 :: [Float] -> Integer
-lenght2 [] = 0
-length2 
+length2 :: [Float] -> Integer
+length2 [] = 0
+length2 (x:xs) = 1 + length2 xs 
+null2 :: [Float] -> Bool
+null2 [] = True
+null2 (_:_) = False
+reverse2 :: [Float] -> [Float]
+reverse2 [] = []
+reverse2 [x] = [x]
+reverse2 (x:xs) = reverse2 xs ++ [x]
+take2 :: Integer -> [Float] -> [Float]
+take2 0 (_:_) = []
+take2 n (x:xs) = x : take2 (n-1) xs
+drop2 :: Integer -> [Float] -> [Float]
