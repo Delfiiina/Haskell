@@ -56,4 +56,3 @@ primesUpTo n = [x | x <- [2..n], isPrime x]
 -- Ejercicio 4 está igual que su resolución pero no funciona(?)
 --firstNPrimes :: Integer -> [Integer]
 --firstNPrimes n = take n [x| x <- [2..], isPrime x]
--- Ejercicio 5
