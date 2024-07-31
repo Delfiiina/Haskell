@@ -34,4 +34,26 @@ maxInList (x:xs)
     | x > head xs = maxInList (x:tail xs)
     | otherwise = maxInList xs 
 -- Ejercicio 3
+-- suponiendo que en la especificación: nunca me van a pasar el 0 y solo serán números positivos 
+{--isPrime :: Integer -> Bool
+isPrime n 
+    | lenght (divisores n) == 2 = True
+    | otherwise = False 
+
+divisores :: Integer -> [Integer]
+divisores 1 = [1]
+divisores m
+    | m - 2 `div` m == 0 = (m-2) :: divisores (m-1)
+    | otherwise = divisores (m-1)
+--}
 isPrime :: Integer -> Bool
+isPrime n
+  | n < 2     = False
+  | otherwise = null [x | x <- [2..n-1], n `mod` x == 0]
+
+primesUpTo :: Integer -> [Integer]
+primesUpTo n = [x | x <- [2..n], isPrime x]
+-- Ejercicio 4 está igual que su resolución pero no funciona(?)
+--firstNPrimes :: Integer -> [Integer]
+--firstNPrimes n = take n [x| x <- [2..], isPrime x]
+-- Ejercicio 5
