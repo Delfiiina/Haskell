@@ -1,3 +1,11 @@
 saludo x = "Hola! soy " ++ x
 
-boomBang xs =[ if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x] 
+numerosSimples x = if x >= 5 then  x - 5  else x
+
+pruebaSentenciaIf x = 
+    if x `mod` 2 == 0 
+        then "Ese numero es par!"
+    else "Ese numero es impar!"
+
+usoDeHead x = head x 
+usoDeTail x = tail x
