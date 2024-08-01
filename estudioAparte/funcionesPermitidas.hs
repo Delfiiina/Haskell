@@ -66,3 +66,6 @@ elem2 n [x]
 elem2 n (x:xs) 
     | n == x = True
     | otherwise = elem2 n xs
+zip2 :: [Float] -> [Float] -> [(Float,Float)]
+zip2 [] [] = []
+zip2 (x:xs) (y:ys) = [(x,y)] ++ zip2 xs ys 

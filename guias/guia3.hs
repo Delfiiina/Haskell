@@ -25,12 +25,16 @@ maximoabsoluto :: Integer -> Integer -> Integer
 maximoabsoluto x y
     | absoluto x == absoluto y || absoluto x > absoluto y = absoluto x
     | absoluto x < absoluto y = absoluto y
+-- forma usando funciones no permitidas
+maximoabsoluto2 x y = max (absoluto x) (absoluto y)
 -- c)
 maximo3 :: Integer -> Integer -> Integer -> Integer
 maximo3 a b c 
     | a > b && a > c = a
     | b > a && b > c = b
     | c > a && c > b = c
+-- forma usando funciones no permitidas
+maximo32 a b c = max (max b c) a
 -- d)
 algunoEs0 :: Float -> Float -> Bool
 algunoEs0 x y 
