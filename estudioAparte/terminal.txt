@@ -162,7 +162,27 @@ ghci> [[y|y <- xs, usoDeLast y xs]| xs <-xxs]
 -- Una apción mejor sería:
 ghci> [last[y|y <- xs, usoDeLast y xs]| xs <-xxs]
 [1,2,3]
+            -> Tuples 
+ghci> fst (8,10)
+8
+ghci> fst ("fofo",10)
+"fofo"
+ghci> snd ("fofo",10)
+10
+ghci> snd ("fofo","fefe")
+"fefe"
+ghci> zip [1,3..] ["uno","tres","cinco","siete","nueve"]  
+[(1,"uno"),(3,"tres"),(5,"cinco"),(7,"siete"),(9,"nueve")]
 
+triangles = [ (a,b,c) | c <- [1..10], b <- [1..10], a <- [1..10] ]
+ghci> triangles
+ -- muestra un montón
+ghci> rightTriangles = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2]
+ghci> rightTriangles
+[(3,4,5),(6,8,10)]
+ghci> rightTriangles' = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c == 24]
+ghci> rightTriangles'
+[(6,8,10)]
 
             -> Prueba función saludo
 ghci> saludo "Juan"
