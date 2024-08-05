@@ -33,7 +33,22 @@ sumaDigitos x
     | 0 <= x && x <= 9 = x
     | otherwise = (x `mod` 10) + sumaDigitos (x `div` 10)
 -- Ejercicio 7
---todosDigitosIguales :: Integer -> Bool
---todosDigitosIguales x
---    | 0 <= x && x <= 9 = True
---    | otherwise = (x `mod` 10) == todosDigitosIguales (x `div` 10)
+todosDigitosIguales :: Integer -> Bool
+todosDigitosIguales x
+    | 0 < x && x < 10 = True
+    | otherwise =  False
+
+-- Ejercicio 8
+--iesimoDigito :: Integer -> Integer -> Integer
+
+todosDigitosIguales :: Integer -> Bool
+todosDigitosIguales n | n == mod n 10 = True
+                      | mod (div n 10) 10 /= mod n 10 = False
+                      | otherwise = todosDigitosIguales (div n 10)
+di :: Int -> Bool
+di x | 0 <= x && 10 > x = True
+     | otherwise = (du (su x)) == du x && di (su x)
+du :: Int -> Int
+du x = mod x 10
+su :: Int -> Int
+su x = div x 10
