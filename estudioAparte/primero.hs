@@ -16,3 +16,8 @@ usoDeLast :: Integer -> [Integer] -> Bool
 usoDeLast x (y:ys)
     | last (y:ys) == x = True
     | otherwise = False
+
+circumference :: Float -> Float
+circumference r = 2 * pi * r
+circumference' :: Double -> Double
+circumference' r = 2 * pi * r
