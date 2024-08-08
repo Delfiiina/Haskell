@@ -36,19 +36,19 @@ sumaDigitos x
 todosDigitosIguales :: Integer -> Bool
 todosDigitosIguales x
     | 0 < x && x < 10 = True
-    | otherwise =  False
-
+    | otherwise =  (x `mod` 10) == ((x `div` 10) `mod` 10) && todosDigitosIguales (x `div` 10)
 -- Ejercicio 8
---iesimoDigito :: Integer -> Integer -> Integer
-
-todosDigitosIguales :: Integer -> Bool
-todosDigitosIguales n | n == mod n 10 = True
-                      | mod (div n 10) 10 /= mod n 10 = False
-                      | otherwise = todosDigitosIguales (div n 10)
-di :: Int -> Bool
-di x | 0 <= x && 10 > x = True
-     | otherwise = (du (su x)) == du x && di (su x)
-du :: Int -> Int
-du x = mod x 10
-su :: Int -> Int
-su x = div x 10
+iesimoDigito :: Integer -> Integer -> Integer
+iesimoDigito n i = ((n `div` (10 ^ ((cantDigitos n) - i))) `mod` 10)
+cantDigitos :: Integer -> Integer
+cantDigitos 0 = 1
+cantDigitos n 
+    | 0 < n && n <= 9 = 1
+    | otherwise = 1 + cantDigitos (n `div` 10)
+-- Ejercicio 9
+esCapicua :: Integer -> Bool
+esCapicua x
+    | 0 <= x && x < 9 = True
+    | otherwise = not ( (mod x 10 == (x `mod` (10 ^ ((cantDigitos x) - 1))))  && (esCapicua ((x `mod` 10)  `mod` (10 ^ ((cantDigitos x) - 1)))))
+-- Ejercicio 10
+-- a)

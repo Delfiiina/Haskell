@@ -5,6 +5,7 @@ De la guia 3:
 elementos de cualquier tipo?
 De la guía 4:
  No entiendo el 2
- El 7
+ Como es la especificación del 8 en cantDigitos? No devuelve un número. Está bien lo que hice? pq la recursión esta solamente en cantDigitos
+ 
 Modularización!!!
 
