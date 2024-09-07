@@ -3,6 +3,9 @@ En la terminal:: Pruebas de las primeras cosas.
 PS C:\Delfina\haskell\aparte> ghci
 Loaded package environment from C:\Users\eugeb\AppData\Roaming\ghc\x86_64-mingw32-9.8.1\environments\default
 GHCi, version 9.8.1: https://www.haskell.org/ghc/  :? for help
+            -> Prueba función saludo
+ghci> saludo "Juan"
+"Hola! soy Juan"            
             -> Prueba funciones básicas de haskell
 ghci> succ 3
 4
@@ -205,8 +208,39 @@ ghci> circumference 4.0
 25.132742
 ghci> circumference' 4.0
 25.132741228718345
-            -> Prueba función saludo
-ghci> saludo "Juan"
-"Hola! soy Juan"
+            -> Type variables
+"Ahre" > "Desp"
+False
+ghci> "Ahre" < "Desp"
+True
+ghci> "A" < "B"      
+True
+ghci> "A" > "B"
+False
+ghci> "a" `compare` "b"
+LT
+ghci> 5 `compare` 66
+LT
+ghci> show 3
+"3"
+ghci> show True
+"True"
+ghci> showFalse
+
+<interactive>:12:1: error: [GHC-88464]
+    Variable not in scope: showFalse
+ghci> show False
+"False"
+ghci> show 2.3456
+"2.3456"
+ghci> read "60" - 3
+57
+ghci> read "60" - read "3"
+57
+ghci> read "[1,2]" ++ [3] 
+[1,2,3]
+ghci> True || read "True"
+True
+
 
 
