@@ -6,3 +6,6 @@ elementos de cualquier tipo?
 De la guía 4:
  No entiendo el 2
  Como es la especificación del 8 en cantDigitos? No devuelve un número. 
+ No entiendo nada del ej 10 :P
+ Preguntar como funcionan: fromIntegral :: (Integral a, Num b) => a -> b y
+fromInteger :: Num a => Integer -> a

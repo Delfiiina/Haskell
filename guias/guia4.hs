@@ -51,4 +51,29 @@ esCapicua x
     | 0 <= x && x < 9 = True
     | otherwise = not ( (mod x 10 == (x `mod` (10 ^ ((cantDigitos x) - 1))))  && (esCapicua ((x `mod` 10)  `mod` (10 ^ ((cantDigitos x) - 1)))))
 -- Ejercicio 10
--- a)
+-- a) 
+f1 :: Int -> Int
+f1 x = 2 ^ (x+1) - 1
+-- b)
+{--f2 :: Int -> Int -> Int
+f2 n 1 = n
+f2 n q = (q^(n+1)-q)/(q-1)--}
+-- Ejercicio 11
+--a)
+eAprox :: Integer -> Float
+eAprox 1 = fromIntegral 2
+eAprox n = eAprox(n-1) + (1/fromIntegral(factorial n))
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+--b)
+e :: Float
+e = eAprox 10
+-- Ejercicio 12
+raizDe2Aprox :: Integer -> Float
+raizDe2Aprox 1 = fromIntegral 1
+raizDe2Aprox n = (raizDe2AproxAux n) - 1
+raizDe2AproxAux 1 = fromIntegral 2
+raizDe2AproxAux n = (2 + (1/(raizDe2AproxAux (n-1))))
+-- Ejercicio 13
+sumatoriaInterna :: Integer -> Integer -> Integer
