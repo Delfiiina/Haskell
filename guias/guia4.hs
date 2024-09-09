@@ -76,4 +76,14 @@ raizDe2Aprox n = (raizDe2AproxAux n) - 1
 raizDe2AproxAux 1 = fromIntegral 2
 raizDe2AproxAux n = (2 + (1/(raizDe2AproxAux (n-1))))
 -- Ejercicio 13
-sumatoriaInterna :: Integer -> Integer -> Integer
+--sumatoriaInterna :: Integer -> Integer -> Integer
+-- Ejercicio 14
+sumaPotencias :: Integer ->Integer ->Integer ->Integer
+sumaPotencias q 1 1 = q ^ 2
+sumaPotencias q n m = (sumaPotenciasFijoM q n m) + (sumaPotenciasFijoN q n m)
+sumaPotenciasFijoM :: Integer -> Integer -> Integer -> Integer
+sumaPotenciasFijoM q 1 m = q ^ (1+m)
+sumaPotenciasFijoM q n m = (q ^ (n+m)) + (sumaPotenciasFijoM q (n-1) m) 
+sumaPotenciasFijoN :: Integer -> Integer -> Integer -> Integer
+sumaPotenciasFijoN q n 1 = q ^ (n +1) 
+sumaPotenciasFijoN q n m = (q ^ (n+m)) + (sumaPotenciasFijoN q n (m-1))

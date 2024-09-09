@@ -1,11 +1,9 @@
 De la guia 3:
  Dudas con el ejercicio 3
- Ejercicio 4c = cómo hago la raiz cuadrada?
- Ejercicio 4g = ¿Cómo hago que funcione para
-elementos de cualquier tipo?
 De la guía 4:
- No entiendo el 2
- Como es la especificación del 8 en cantDigitos? No devuelve un número. 
+ No entiendo el 2 
  No entiendo nada del ej 10 :P
  Preguntar como funcionan: fromIntegral :: (Integral a, Num b) => a -> b y
-fromInteger :: Num a => Integer -> a
+ fromInteger :: Num a => Integer -> a
+ Me salteo el 13
+ 
