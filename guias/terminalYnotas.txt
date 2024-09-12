@@ -5,5 +5,4 @@ De la guía 4:
  No entiendo nada del ej 10 :P
  Preguntar como funcionan: fromIntegral :: (Integral a, Num b) => a -> b y
  fromInteger :: Num a => Integer -> a
- Me salteo el 13
- 
+ Me salteo el 13 y el 15

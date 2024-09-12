@@ -87,3 +87,5 @@ sumaPotenciasFijoM q n m = (q ^ (n+m)) + (sumaPotenciasFijoM q (n-1) m)
 sumaPotenciasFijoN :: Integer -> Integer -> Integer -> Integer
 sumaPotenciasFijoN q n 1 = q ^ (n +1) 
 sumaPotenciasFijoN q n m = (q ^ (n+m)) + (sumaPotenciasFijoN q n (m-1))
+-- Ejercicio 15
+-- Ejercicio 16 
