@@ -89,3 +89,12 @@ sumaPotenciasFijoN q n 1 = q ^ (n +1)
 sumaPotenciasFijoN q n m = (q ^ (n+m)) + (sumaPotenciasFijoN q n (m-1))
 -- Ejercicio 15
 -- Ejercicio 16 
+-- Ejercicio 17 
+esFibonacci :: Integer -> Bool
+esFibonacci n = pruebaFiboConN n 0 
+
+pruebaFiboConN :: Integer -> Integer -> Bool
+pruebaFiboConN n j
+    | (fibonacci j) == n = True
+    | (fibonacci j) > n = False
+    | otherwise = pruebaFiboConN n (j+1)
