@@ -184,6 +184,7 @@ sacarBlancosRepetidos (x:y:xs)
     | otherwise = x : sacarBlancosRepetidos (y:xs)
 
 -- Ejercicio 4.2
+
 contarPalabras :: [Char] -> Integer
 contarPalabras [] = 0
 contarPalabras (x:xs)
@@ -199,25 +200,51 @@ contarBlancos (x:xs)
 
 -- Ejercicio 4.3
 palabras :: [Char] -> [[Char]]
-palabras [] = []
-palabras (x:xs)
-    | x /= ' ' = [x] : palabras xs
-    | otherwise = [] ++ palabras xs
+palabras x = palabrasAux (dejarSinBlancos x) (dejarSinBlancos x) 
 
+palabrasAux :: [Char] -> [Char] -> [[Char]]
+palabrasAux [] l = [laPrimeraPalabra l]
+palabrasAux (x:xs) l 
+    | x == ' ' = laPrimeraPalabra l : palabrasAux xs xs
+    | otherwise = palabrasAux xs l
 
+laPrimeraPalabra :: [Char] -> [Char]
+laPrimeraPalabra [] = []
+laPrimeraPalabra (x:xs) 
+    | x == ' ' = []
+    | otherwise = x : laPrimeraPalabra xs
 
+dejarSinBlancos :: [Char] -> [Char]
+dejarSinBlancos [] = []
+dejarSinBlancos (x:xs) = sacarPrimerBlanco(sacarUltimoBlanco(sacarBlancosRepetidos (x:xs)))
 
-
-
-
-
---    where dejarLindo = sacarPrimerBlanco(sacarUltimoBlanco(sacarBlancosRepetidos x))
 sacarPrimerBlanco :: [Char] -> [Char]
 sacarPrimerBlanco (x:xs)
     | x == ' ' = xs
     | otherwise = (x:xs)
+
 sacarUltimoBlanco :: [Char] -> [Char]
 sacarUltimoBlanco (x:xs)
     | head (reverso (x:xs)) == ' ' = principio (x:xs)
     | otherwise = (x:xs)
-    
+
+-- Ejercicio 4.4
+
+palabraMasLarga :: [Char] -> [Char]
+palabraMasLarga [] = []
+palabraMasLarga (x:y:xs) 
+    | contarPalabras (x:y:xs) == 1 = dejarSinBlancos(x:y:xs)
+    | cuentaCaracteres (head (palabras (x:y:xs))) >= cuentaCaracteres (head(palabras(y:xs))) = palabraMasLarga (x:xs)
+    | otherwise = palabraMasLarga (y:xs)
+
+cuentaCaracteres :: [Char] -> Integer
+cuentaCaracteres [] = 0
+cuentaCaracteres (x:xs) = 1 + cuentaCaracteres xs
+
+comparaLargos :: [Char] -> [Char] -> [Char]
+comparaLargos [] [] = []
+comparaLargos [] l = l
+comparaLargos l [] = l
+comparaLargos (x:xs) (y:ys) 
+    | cuentaCaracteres (x:xs) >= cuentaCaracteres (y:ys) = (x:xs)
+    | otherwise = (y:ys)
