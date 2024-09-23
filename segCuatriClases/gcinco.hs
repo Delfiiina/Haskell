@@ -198,3 +198,26 @@ contarBlancos (x:xs)
     | otherwise = contarBlancos xs
 
 -- Ejercicio 4.3
+palabras :: [Char] -> [[Char]]
+palabras [] = []
+palabras (x:xs)
+    | x /= ' ' = [x] : palabras xs
+    | otherwise = [] ++ palabras xs
+
+
+
+
+
+
+
+
+--    where dejarLindo = sacarPrimerBlanco(sacarUltimoBlanco(sacarBlancosRepetidos x))
+sacarPrimerBlanco :: [Char] -> [Char]
+sacarPrimerBlanco (x:xs)
+    | x == ' ' = xs
+    | otherwise = (x:xs)
+sacarUltimoBlanco :: [Char] -> [Char]
+sacarUltimoBlanco (x:xs)
+    | head (reverso (x:xs)) == ' ' = principio (x:xs)
+    | otherwise = (x:xs)
+    
