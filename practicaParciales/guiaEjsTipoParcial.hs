@@ -134,8 +134,31 @@ destuplar [] = []
 destuplar ((a,b):xs) = a : b : destuplar xs
 
 -- Ejercicio 8 
-fibonacci :: Integer -> Integer 
+fibonacci :: Int -> Int
 fibonacci x
     | x == 0 = 0
     | x == 1 = 1
     | otherwise = fibonacci (x-1) + fibonacci (x-2)
+
+esCaminoFibo :: [Int] -> Int -> Bool
+esCaminoFibo [] _ = True 
+esCaminoFibo (x:xs) i = not (i /= x) && ((x:xs) == secFiboDesde x (ultimoElemento xs))
+    where ultimoElemento (x:xs) = head (reverso (x:xs))
+
+reverso :: [Int] -> [Int]
+reverso [] = []
+reverso [x] = [x]
+reverso (x:xs) = reverso xs ++ [x]
+
+perteneceAFibo :: Int -> Int -> Bool
+perteneceAFibo n x 
+    | fibonacci x == n = True
+    | fibonacci x < n = perteneceAFibo n (x+1)
+    | otherwise = False
+
+secFiboDesde :: Int -> Int -> [Int]
+secFiboDesde x n
+    | fibonacci (x) <= n = (fibonacci x) : secFiboDesde (x+1) n
+    | otherwise = []
+
+-- Ejercicio 9
