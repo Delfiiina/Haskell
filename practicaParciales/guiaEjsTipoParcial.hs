@@ -69,9 +69,16 @@ maximo (x:y:xs)
     | otherwise = maximo (y:xs)
 
 -- Ejercicio 6
+
 masRepetido :: Tablero -> Int
 masRepetido [x] = masAparicionesEnFila x
-masRepetido (x:xs) = masRepetidoAux (plancharTablero (x:xs))
+masRepetido (x:xs) = buscarTuplaMayor  (tuplarPorCantidades (plancharTablero (x:xs)))
+
+buscarTuplaMayor :: [(Int,Int)] -> Int  -- dada la lista con tuplas (elemento,cant de apariciones) devuelve el elemento con cant de apariciones mayor
+buscarTuplaMayor [(a,b)] = a
+buscarTuplaMayor ((a,b):(c,d):xs)
+    | b >= d = buscarTuplaMayor ((a,b):xs)
+    | otherwise = buscarTuplaMayor ((c,d):xs)
 
 cantAparicionesEnFila :: Int -> Fila -> Int
 cantAparicionesEnFila a [x] 
@@ -81,11 +88,19 @@ cantAparicionesEnFila a (x:xs)
     | a == x = 1 + cantAparicionesEnFila a xs
     | otherwise = cantAparicionesEnFila a xs
 
+tuplarPorCantidades :: Fila -> [(Int,Int)]
+tuplarPorCantidades [] = []
+tuplarPorCantidades (x:xs) = (x, cantAparicionesEnFila x (x:xs)) : (tuplarPorCantidades (eliminarElementoDeFila x (x:xs)))
+
+eliminarElementoDeFila :: Int -> Fila -> Fila
+eliminarElementoDeFila _ [] = []
+eliminarElementoDeFila a (x:xs)
+    | a == x = eliminarElementoDeFila a xs
+    | otherwise = x : eliminarElementoDeFila a xs 
+
 plancharTablero :: Tablero -> [Int]
 plancharTablero [] = []
 plancharTablero (x:xs) = x ++ plancharTablero xs
-
-
 
 masAparicionesEnFila ::  Fila -> Int
 masAparicionesEnFila [x] = x
@@ -93,8 +108,34 @@ masAparicionesEnFila (x:y:xs)
     | cantAparicionesEnFila x (x:y:xs) >= cantAparicionesEnFila y (x:y:xs) = masAparicionesEnFila (x:xs)
     | otherwise = masAparicionesEnFila (y:xs)
 
-masRepetidoAux  :: [Int] -> Int
-masRepetidoAux [x] = x
-masRepetidoAux (x:y:xs)
-    | cantAparicionesEnFila x (x:y:xs) >= cantAparicionesEnFila y (x:y:xs) = masRepetidoAux (x:xs)
-    | otherwise = masRepetidoAux (y:xs)
+
+-- Ejercicio 7
+
+valoresDeCamino :: Tablero -> Camino -> [Int]
+valoresDeCamino _ [] = []
+valoresDeCamino _ (x:xs) = destuplar (ordenarPorSegundaComponente(ordenarPorPrimeraComponente (x:xs)))
+
+ordenarPorPrimeraComponente :: Camino -> Camino
+ordenarPorPrimeraComponente [] = []
+ordenarPorPrimeraComponente [x] = [x]
+ordenarPorPrimeraComponente ((a,b):(c,d):xs)
+    | a <= c = (a,b) : ordenarPorPrimeraComponente ((c,d):xs)
+    | otherwise = (c,d) : ordenarPorPrimeraComponente ((a,b):xs)
+
+ordenarPorSegundaComponente :: Camino -> Camino
+ordenarPorSegundaComponente [] = []
+ordenarPorSegundaComponente [x] = [x]
+ordenarPorSegundaComponente ((a,b):(c,d):xs)
+    | b <= d = (a,b) : ordenarPorSegundaComponente ((c,d):xs)
+    | otherwise = (c,d) : ordenarPorSegundaComponente ((a,b):xs)
+
+destuplar :: Camino -> [Int]
+destuplar [] = []
+destuplar ((a,b):xs) = a : b : destuplar xs
+
+-- Ejercicio 8 
+fibonacci :: Integer -> Integer 
+fibonacci x
+    | x == 0 = 0
+    | x == 1 = 1
+    | otherwise = fibonacci (x-1) + fibonacci (x-2)
