@@ -162,3 +162,78 @@ secFiboDesde x n
     | otherwise = []
 
 -- Ejercicio 9
+divisoresPropios :: Int -> [Int]
+--divisoresPropios x = pasarANegativoYdarVuelta (divisoresAux x 1) ++ divisoresAux x 1
+divisoresPropios x =  divisoresAux x 1
+
+
+divisoresAux :: Int -> Int -> [Int]
+divisoresAux x a
+    | a >= x = []
+    | mod x a == 0 = [a] ++ divisoresAux x (a + 1)
+    | otherwise = divisoresAux x (a + 1)
+
+
+{--
+pasarANegativoYdarVuelta :: [Int] -> [Int]
+pasarANegativoYdarVuelta [] = []
+pasarANegativoYdarVuelta (x:xs) = pasarANegativoYdarVuelta xs ++ [-x]
+--}
+
+
+-- Ejercicio 10
+sumaDeDivisores :: [Int] -> Int
+sumaDeDivisores [] = 0
+sumaDeDivisores (x:xs) = x + sumaDeDivisores xs
+
+sumaDeDivisoresPropios :: Int -> Int
+sumaDeDivisoresPropios 1 = 0
+sumaDeDivisoresPropios a = sumaDeDivisores (divisoresPropios a)
+
+sonAmigos :: Int -> Int -> Bool
+sonAmigos a b = (sumaDeDivisoresPropios a) == b && (sumaDeDivisoresPropios b) == a
+
+-- Ejercicio 11 
+{--
+
+losPrimerosNPerfectosAux :: Int -> Int -> [Int]
+losPrimerosNPerfectosAux n x 
+    | 
+
+unSoloPerfecto :: Int -> [Int]
+unSoloPerfecto x 
+    | sumaDeDivisoresPropios x == x = [x]
+    | otherwise = unSoloPerfecto (x+1)
+
+esPerfecto :: Int -> Bool
+esPerfecto x = sumaDeDivisoresPropios x == x
+    
+chequeaLargo :: Int -> [Int] -> Bool
+chequeaLargo _ [] = False
+chequeaLargo a (x:xs) = largo (x:xs) == a 
+
+largo :: [Int] -> Int
+largo [] = 0
+largo (x:xs) = 1 + largo xs 
+--}
+
+
+-- Ejercicio 12
+
+listaDeAmigos :: [Int] ->[(Int,Int)]
+listaDeAmigos [] = []
+listaDeAmigos (x:xs) 
+    | esAmigoDe x (x:xs) = (x, hallarSuAmigo x (x:xs)) : listaDeAmigos xs
+    | otherwise = listaDeAmigos xs
+
+hallarSuAmigo :: Int -> [Int] -> Int
+hallarSuAmigo a (x:xs)
+    | sonAmigos a x = x
+    | otherwise = hallarSuAmigo a xs
+
+
+esAmigoDe :: Int -> [Int] -> Bool
+esAmigoDe _ [] = False
+esAmigoDe a (x:xs)
+    | sonAmigos a x = True
+    | otherwise = esAmigoDe a xs
