@@ -113,6 +113,16 @@ masAparicionesEnFila (x:y:xs)
 
 valoresDeCamino :: Tablero -> Camino -> [Int]
 valoresDeCamino _ [] = []
+valoresDeCamino t (p : ps) = obtener t p : valoresDeCamino t ps
+
+obtener :: Tablero -> Posicion -> Int
+obtener ((x : _) : _) (1, 1) = x
+obtener ((_ : xs) : fs) (n, m)
+  | n > 1 = obtener fs (n - 1, m) -- me desplazo hacia la derecha
+  | otherwise = obtener (xs : fs) (1, m - 1) -- me desplazo hacia abajo
+ {-- 
+valoresDeCamino :: Tablero -> Camino -> [Int]
+valoresDeCamino _ [] = []
 valoresDeCamino _ (x:xs) = destuplar (ordenarPorSegundaComponente(ordenarPorPrimeraComponente (x:xs)))
 
 ordenarPorPrimeraComponente :: Camino -> Camino
@@ -133,6 +143,9 @@ destuplar :: Camino -> [Int]
 destuplar [] = []
 destuplar ((a,b):xs) = a : b : destuplar xs
 
+
+
+--}
 -- Ejercicio 8 
 fibonacci :: Int -> Int
 fibonacci x
@@ -194,29 +207,25 @@ sonAmigos :: Int -> Int -> Bool
 sonAmigos a b = (sumaDeDivisoresPropios a) == b && (sumaDeDivisoresPropios b) == a
 
 -- Ejercicio 11 
-{--
+
+losPrimerosNPerfectos :: Int -> [Int]
+losPrimerosNPerfectos n = losPrimerosNPerfectosAux 1 n
 
 losPrimerosNPerfectosAux :: Int -> Int -> [Int]
-losPrimerosNPerfectosAux n x 
-    | 
+losPrimerosNPerfectosAux n 0 = []
+losPrimerosNPerfectosAux n m 
+    | esNPerfecto n = n : losPrimerosNPerfectosAux (n+1) (m-1)
+    | otherwise = losPrimerosNPerfectosAux (n+1) m
 
-unSoloPerfecto :: Int -> [Int]
-unSoloPerfecto x 
-    | sumaDeDivisoresPropios x == x = [x]
-    | otherwise = unSoloPerfecto (x+1)
-
-esPerfecto :: Int -> Bool
-esPerfecto x = sumaDeDivisoresPropios x == x
-    
-chequeaLargo :: Int -> [Int] -> Bool
-chequeaLargo _ [] = False
-chequeaLargo a (x:xs) = largo (x:xs) == a 
-
-largo :: [Int] -> Int
-largo [] = 0
-largo (x:xs) = 1 + largo xs 
---}
-
+esNPerfecto :: Int -> Bool
+esNPerfecto x = x == sumaDeDivisoresVersion2 x 1 
+   
+sumaDeDivisoresVersion2 :: Int -> Int -> Int
+sumaDeDivisoresVersion2 1 _ = 1
+sumaDeDivisoresVersion2 n m 
+    | n == m = 0
+    | mod n m == 0 = m + sumaDeDivisoresVersion2 n (m+1)
+    | otherwise = sumaDeDivisoresVersion2 n (m+1)
 
 -- Ejercicio 12
 
