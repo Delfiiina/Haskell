@@ -110,7 +110,7 @@ masAparicionesEnFila (x:y:xs)
 
 
 -- Ejercicio 7
-
+{--
 valoresDeCamino :: Tablero -> Camino -> [Int]
 valoresDeCamino _ [] = []
 valoresDeCamino t (p : ps) = obtener t p : valoresDeCamino t ps
@@ -120,7 +120,7 @@ obtener ((x : _) : _) (1, 1) = x
 obtener ((_ : xs) : fs) (n, m)
   | n > 1 = obtener fs (n - 1, m) -- me desplazo hacia la derecha
   | otherwise = obtener (xs : fs) (1, m - 1) -- me desplazo hacia abajo
- {-- 
+
 valoresDeCamino :: Tablero -> Camino -> [Int]
 valoresDeCamino _ [] = []
 valoresDeCamino _ (x:xs) = destuplar (ordenarPorSegundaComponente(ordenarPorPrimeraComponente (x:xs)))
@@ -142,10 +142,25 @@ ordenarPorSegundaComponente ((a,b):(c,d):xs)
 destuplar :: Camino -> [Int]
 destuplar [] = []
 destuplar ((a,b):xs) = a : b : destuplar xs
-
-
-
 --}
+
+-- Mio :P
+valoresDeCamino :: Tablero -> Camino -> [Int]
+valoresDeCamino _ [] = []
+valoresDeCamino (y:ys) ((a,b):xs) = (recorroColumna b 1 (recorroFila a 1 (y:ys))): valoresDeCamino (y:ys) xs
+
+recorroFila :: Int -> Int -> Tablero -> Fila
+recorroFila _ _ [] = []
+recorroFila a m (x:xs)
+    | a == m = x
+    | otherwise = recorroFila a (m+1) xs
+
+recorroColumna :: Int -> Int -> Fila -> Int
+recorroColumna a m (x:xs)
+    | a == m = x
+    | otherwise = recorroColumna a (m+1) xs
+
+
 -- Ejercicio 8 
 fibonacci :: Int -> Int
 fibonacci x

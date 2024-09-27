@@ -98,3 +98,4 @@ pruebaFiboConN n j
     | (fibonacci j) > n = False
     | otherwise = pruebaFiboConN n (j+1)
 -- Ejercicio 18
+
