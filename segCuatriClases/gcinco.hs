@@ -273,3 +273,35 @@ sacarCabeza [] = []
 sacarCabeza (x:xs) = xs
 
 -- b)
+
+descomponerEnPrimos :: [Int] -> [[Int]]
+descomponerEnPrimos [] = []
+descomponerEnPrimos (x:xs) = descomponer x : descomponerEnPrimos xs
+
+descomponer :: Int -> [Int]
+descomponer 1 = []
+descomponer 2 = [2]
+descomponer n = buscarUnDivisor n 2 : descomponer (div n (buscarUnDivisor n 2))
+
+buscarUnDivisor :: Int -> Int -> Int
+buscarUnDivisor n x
+    | mod n x == 0 = x
+    | otherwise = buscarUnDivisor n (x+1)
+
+
+-- Ejercicio 6 
+
+type Texto = [Char]
+type Nombre = Texto
+type Telefono = Texto
+type Contacto = (Nombre, Telefono)
+type ContactosTel = [Contacto]
+
+elNombre :: Contacto -> Nombre
+elNombre (a,b) = a 
+elTelefono :: Contacto -> Telefono
+elTelefono (a,b) = b
+
+-- a 
+enLosContactos :: Nombre -> ContactosTel -> Bool
+enLosContactos
