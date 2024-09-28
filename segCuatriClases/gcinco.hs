@@ -249,7 +249,6 @@ comparaLargos (x:xs) (y:ys)
     | cuentaCaracteres (x:xs) >= cuentaCaracteres (y:ys) = (x:xs)
     | otherwise = (y:ys)
 
-
 -- Ejercicio 5
 -- a)
 sumaAcumulada :: (Num t) => [t] -> [t]
