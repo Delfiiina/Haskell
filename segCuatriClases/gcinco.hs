@@ -304,4 +304,74 @@ elTelefono (a,b) = b
 
 -- a 
 enLosContactos :: Nombre -> ContactosTel -> Bool
-enLosContactos
+enLosContactos _ [] = False
+enLosContactos a (x:xs) = a == fst x || enLosContactos a xs
+
+-- b 
+agregarContacto :: Contacto ->ContactosTel ->ContactosTel
+agregarContacto x [] = [x]
+agregarContacto a (x:xs)
+    | enLosContactos (fst a) (x:xs) = actualizarContactosTel a (x:xs)
+    | otherwise = a : (x:xs)
+
+actualizarContactosTel :: Contacto -> ContactosTel -> ContactosTel
+actualizarContactosTel a (x:xs) = a : (eliminar a (x:xs))
+
+eliminar :: Contacto -> ContactosTel -> ContactosTel
+eliminar a (x:xs)
+    | a == x = xs
+    | otherwise = x : eliminar a xs 
+
+-- c
+eliminarContacto :: Nombre ->ContactosTel ->ContactosTel
+eliminarContacto _ [] = []
+eliminarContacto a (x:xs)
+    | (enLosContactos a (x:xs)) = eliminarSoloConNombre a (x:xs)
+    | otherwise = (x:xs) 
+
+eliminarSoloConNombre :: Nombre -> ContactosTel -> ContactosTel
+eliminarSoloConNombre _ [] = []
+eliminarSoloConNombre a (x:xs)
+    | a == (fst x) = xs
+    | otherwise = x : eliminarSoloConNombre a xs 
+
+-- Ejercicio 7
+
+type Identificacion = Integer
+type Ubicacion = Texto
+type Estado = (Disponibilidad, Ubicacion)
+type Locker = (Identificacion, Estado)
+type MapaDeLockers = [Locker]
+type Disponibilidad = Bool
+
+-- a)
+existeElLocker :: Identificacion ->MapaDeLockers ->Bool
+existeElLocker _ [] = False
+existeElLocker x ((a,b):xs) 
+    | x == a = True
+    | otherwise = existeElLocker x xs
+
+-- b)
+ubicacionDelLocker :: Identificacion ->MapaDeLockers ->Ubicacion
+ubicacionDelLocker x ((a,b):xs) 
+    | x == a = snd b 
+    | otherwise = ubicacionDelLocker x xs
+
+-- c)
+estaDisponibleElLocker :: Identificacion ->MapaDeLockers ->Bool
+estaDisponibleElLocker x ((a,b):xs) 
+    | x == a = fst b 
+    | otherwise = estaDisponibleElLocker x xs
+
+-- d)
+ocuparLocker :: Identificacion ->MapaDeLockers ->MapaDeLockers
+ocuparLocker x ((a,b):xs) 
+    | x /= a =  (a,b) : ocuparLocker x xs
+    | not(fst b) = ((a,b):xs)
+    | otherwise = (a ,(not(fst b),snd b)) : sacar x ((a,b):xs) 
+
+sacar :: Identificacion -> MapaDeLockers -> MapaDeLockers
+sacar _ [] = []
+sacar x ((a,b):xs)
+    | x == a = xs
+    | otherwise = (a,b) : sacar x xs
