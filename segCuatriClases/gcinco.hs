@@ -248,3 +248,28 @@ comparaLargos l [] = l
 comparaLargos (x:xs) (y:ys) 
     | cuentaCaracteres (x:xs) >= cuentaCaracteres (y:ys) = (x:xs)
     | otherwise = (y:ys)
+
+
+-- Ejercicio 5
+-- a)
+sumaAcumulada :: (Num t) => [t] -> [t]
+sumaAcumulada [] = []
+sumaAcumulada (x:xs) =  (sumaAcumulada (sacarUltimoElemento (x:xs))) ++ [sumarTodaLaSec (x:xs)]
+
+sacarUltimoElemento :: (Num t) => [t] -> [t]
+sacarUltimoElemento [] = []
+sacarUltimoElemento (x:xs) = darVuelta (sacarCabeza (darVuelta (x:xs)))
+
+darVuelta :: (Num t) => [t] -> [t]
+darVuelta [] = []
+darVuelta (x:xs) = darVuelta xs ++ [x]
+
+sumarTodaLaSec :: (Num t) => [t] -> t
+sumarTodaLaSec [] = 0
+sumarTodaLaSec (x:xs) = x + sumarTodaLaSec xs
+
+sacarCabeza :: (Num t) => [t] -> [t]
+sacarCabeza [] = []
+sacarCabeza (x:xs) = xs
+
+-- b)
