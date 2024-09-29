@@ -458,3 +458,28 @@ sacarPrimeraPalabra [x]
 sacarPrimeraPalabra (x:xs)
     | x /= ' ' = sacarPrimeraPalabra xs
     | otherwise = xs
+
+-- d)
+
+palabraMasLarga :: [Char] -> [Char]
+palabraMasLarga [] = []
+palabraMasLarga (x:xs)
+    | contarPalabras (x:xs) == 1 = (x:xs)
+    | otherwise = buscaPalabraMasLarga (palabras(x:xs))
+
+buscaPalabraMasLarga :: [[Char]] -> [Char]
+buscaPalabraMasLarga [] = []
+buscaPalabraMasLarga [[x]] = [x]
+buscaPalabraMasLarga (x:y:xs) 
+    | xs == [] = masLargaDe2 (x:y:xs)
+    | contarLetrasDePalabra x >= contarLetrasDePalabra y = buscaPalabraMasLarga (x:xs)
+    | otherwise = buscaPalabraMasLarga (y:xs)
+
+contarLetrasDePalabra :: [Char] -> Integer  -- solo recibe una palabra
+contarLetrasDePalabra [] = 0
+contarLetrasDePalabra (x:xs) = 1 + contarLetrasDePalabra xs
+
+masLargaDe2 :: [[Char]] -> [Char]  -- recibe 2 palabras, devuelve 1 (la más larga de esas 2)
+masLargaDe2 (x:y:xs)
+    | contarLetrasDePalabra x >= contarLetrasDePalabra y = x
+    | otherwise = y
