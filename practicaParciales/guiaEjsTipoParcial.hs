@@ -222,7 +222,7 @@ sonAmigos :: Int -> Int -> Bool
 sonAmigos a b = (sumaDeDivisoresPropios a) == b && (sumaDeDivisoresPropios b) == a
 
 -- Ejercicio 11 
-
+{--
 losPrimerosNPerfectos :: Int -> [Int]
 losPrimerosNPerfectos n = losPrimerosNPerfectosAux 1 n
 
@@ -231,8 +231,9 @@ losPrimerosNPerfectosAux n 0 = []
 losPrimerosNPerfectosAux n m 
     | esNPerfecto n = n : losPrimerosNPerfectosAux (n+1) (m-1)
     | otherwise = losPrimerosNPerfectosAux (n+1) m
-
+--}
 esNPerfecto :: Int -> Bool
+esNPerfecto 1 = False
 esNPerfecto x = x == sumaDeDivisoresVersion2 x 1 
    
 sumaDeDivisoresVersion2 :: Int -> Int -> Int
@@ -243,7 +244,7 @@ sumaDeDivisoresVersion2 n m
     | otherwise = sumaDeDivisoresVersion2 n (m+1)
 
 -- Ejercicio 12
-
+{--
 listaDeAmigos :: [Int] ->[(Int,Int)]
 listaDeAmigos [] = []
 listaDeAmigos (x:xs) 
@@ -260,4 +261,26 @@ esAmigoDe :: Int -> [Int] -> Bool
 esAmigoDe _ [] = False
 esAmigoDe a (x:xs)
     | sonAmigos a x = True
-    | otherwise = esAmigoDe a xs
+    | otherwise = esAmigoDe a 
+    --}
+
+-- Rehaciendo el ej 11
+
+{--
+Consigna: 
+Implementar la funcion losPrimerosNPerfectos :: Int ->[Int]
+problema losPrimerosNPerfectos (n: Z) : seq⟨Z⟩ {
+requiere: {n > 0}
+asegura: {res es la lista de los primeros n numeros perfectos, de menor a mayor}
+--}
+
+losPrimerosNPerfectos :: Int -> [Int]
+losPrimerosNPerfectos 0 = []
+losPrimerosNPerfectos n = losPrimerosNPerfectosAux 1 n 
+
+losPrimerosNPerfectosAux :: Int -> Int -> [Int]
+losPrimerosNPerfectosAux _ 0 = []
+losPrimerosNPerfectosAux n m 
+    | esNPerfecto n = n : losPrimerosNPerfectosAux (n+1) (m-1)
+    | otherwise = losPrimerosNPerfectosAux (n+1) m
+
