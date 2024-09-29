@@ -173,8 +173,7 @@ ordenar :: [Integer] -> [Integer]
 ordenar [] = []
 ordenar [x] = [x]
 ordenar lista = (ordenar(quitar (maximo lista)lista)) ++ [(maximo lista)]
-
--- Ejercicio 4.1
+{---- Ejercicio 4.1
 
 sacarBlancosRepetidos :: [Char] -> [Char]
 sacarBlancosRepetidos [] = []
@@ -248,7 +247,7 @@ comparaLargos l [] = l
 comparaLargos (x:xs) (y:ys) 
     | cuentaCaracteres (x:xs) >= cuentaCaracteres (y:ys) = (x:xs)
     | otherwise = (y:ys)
-
+--}
 -- Ejercicio 5
 -- a)
 sumaAcumulada :: (Num t) => [t] -> [t]
@@ -374,3 +373,88 @@ sacar _ [] = []
 sacar x ((a,b):xs)
     | x == a = xs
     | otherwise = (a,b) : sacar x xs
+
+
+-- Ejercicio 4 (otra vez)
+-- a)
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos [x] = [x]
+sacarBlancosRepetidos (x:y:xs)
+    | x /= ' ' && y /= ' ' = x : y : sacarBlancosRepetidos xs
+    | x /= ' ' && y == ' ' = x : sacarBlancosRepetidos (y:xs)
+    | x == ' ' && y /= ' ' = x : y : sacarBlancosRepetidos xs
+    | x == ' ' && y == ' ' = sacarBlancosRepetidos (y:xs)
+
+-- b)
+
+contarPalabras :: [Char] -> Integer
+contarPalabras [] = 0
+contarPalabras [x]
+    | x == ' ' = 0
+    | otherwise = 1
+contarPalabras (x:xs) = contarBlancos (dejarLindo (x:xs)) + 1 
+
+dejarLindo :: [Char] -> [Char]
+dejarLindo [] = []
+dejarLindo (x:xs) = sacarPrimerBlanco (sacarUltimoBlanco (sacarBlancosRepetidos (x:xs)))
+
+sacarPrimerBlanco :: [Char] -> [Char]
+sacarPrimerBlanco (x:xs) 
+    | x == ' ' = xs
+    | otherwise = (x:xs)
+
+sacarUltimoBlanco :: [Char] -> [Char]
+sacarUltimoBlanco (x:xs)
+    | head (reverso (x:xs)) == ' ' = sacarUltimoElementoChar (x:xs)
+    | otherwise = (x:xs)
+
+sacarUltimoElementoChar :: [Char] -> [Char]
+sacarUltimoElementoChar [] = []
+sacarUltimoElementoChar [x] = []
+sacarUltimoElementoChar (x:xs) = reverso (sacarCabezaChar(reverso (x:xs)))
+
+sacarCabezaChar :: [Char] -> [Char]
+sacarCabezaChar [] = []
+sacarCabezaChar [x] = []
+sacarCabezaChar (x:xs) = xs
+
+contarBlancos :: [Char] -> Integer
+contarBlancos [] = 0
+contarBlancos (x:xs)
+    | x == ' ' = 1 + contarBlancos xs
+    | otherwise = contarBlancos xs
+
+-- probando algo 
+devolverUltimo :: [t] -> t 
+devolverUltimo [x] = x 
+devolverUltimo (x:xs) = devolverUltimo xs
+
+-- c)
+
+palabras :: [Char] -> [[Char]]
+palabras [] = []
+palabras [x] 
+    | x == ' ' = []
+    | otherwise = [[x]]
+palabras (x:xs) = tomarPrimeraPalabra (dejarLindo(x:xs)) : palabras (sacarPrimeraPalabra (dejarLindo(x:xs)))
+
+
+tomarPrimeraPalabra :: [Char] -> [Char]
+tomarPrimeraPalabra [] = []
+tomarPrimeraPalabra [x]
+    | x == ' ' = []
+    | otherwise = [x]
+tomarPrimeraPalabra (x:xs)
+    | x /= ' ' = x : tomarPrimeraPalabra xs
+    | otherwise = []
+
+
+sacarPrimeraPalabra :: [Char] -> [Char]
+sacarPrimeraPalabra [] = []
+sacarPrimeraPalabra [x] 
+    | x == ' ' = [x]
+    | otherwise = []
+sacarPrimeraPalabra (x:xs)
+    | x /= ' ' = sacarPrimeraPalabra xs
+    | otherwise = xs
