@@ -483,3 +483,26 @@ masLargaDe2 :: [[Char]] -> [Char]  -- recibe 2 palabras, devuelve 1 (la más lar
 masLargaDe2 (x:y:xs)
     | contarLetrasDePalabra x >= contarLetrasDePalabra y = x
     | otherwise = y
+
+-- e)
+
+aplanar :: [[Char]] -> [Char]
+aplanar [] = []
+aplanar (x:xs) = x ++ aplanar xs
+
+-- f)
+aplanarConBlancos :: [[Char]] -> [Char]
+aplanarConBlancos [] = []
+aplanarConBlancos [x] = x ++ []
+aplanarConBlancos (x:xs) = x ++ [' '] ++ aplanarConBlancos xs  
+
+-- g)
+
+aplanarConNBlancos :: [[Char]] -> Integer -> [Char]
+aplanarConNBlancos [] _ = []
+aplanarConNBlancos [x] _ = x ++ []
+aplanarConNBlancos (x:xs) n = x ++ (concatenarNBlancos n) ++ aplanarConNBlancos xs n
+
+concatenarNBlancos :: Integer -> [Char]
+concatenarNBlancos 0 = []
+concatenarNBlancos n = [' '] ++ concatenarNBlancos (n-1)
